@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 'use strict'
 
 const { prompt } = require('enquirer')
@@ -12,7 +14,9 @@ const fs = require('fs');
     choices: ['Chill', 'Driving', 'Relaxing', 'Motivational', 'Working']
   })
 
-  const files = fs.readdirSync(firstResponse.purpose).map(file => file.replace(/.mp3/g, ''))
+  const files = fs
+    .readdirSync(firstResponse.purpose)
+    .map((file) => file.replace(/.mp3/g, ''))
 
   const secondResponse = await prompt({
     type: 'select',
