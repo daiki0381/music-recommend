@@ -21,9 +21,11 @@
   },
   "homepage": "https://github.com/daiki0381/music-recommend#readme",
   "devDependencies": {
-    "enquirer": "^2.3.6",
     "eslint": "^8.15.0",
-    "node-wav-player": "^0.2.0",
     "standard": "^17.0.0"
+  },
+  "dependencies": {
+    "enquirer": "^2.3.6",
+    "node-wav-player": "^0.2.0"
   }
 }
