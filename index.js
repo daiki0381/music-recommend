@@ -9,7 +9,7 @@ const fs = require('fs');
     type: 'select',
     name: 'purpose',
     message: 'Please select your purpose',
-    choices: ['Chill', 'Relaxing', 'Working']
+    choices: ['Chill', 'Driving', 'Relaxing', 'Motivational', 'Working']
   })
 
   const files = fs.readdirSync(firstResponse.purpose).map(file => file.replace(/.mp3/g, ''))
