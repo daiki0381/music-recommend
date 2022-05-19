@@ -15,7 +15,7 @@ const fs = require('fs');
   })
 
   const files = fs
-    .readdirSync(firstResponse.purpose)
+    .readdirSync(`${__dirname}/${firstResponse.purpose}`)
     .map((file) => file.replace(/.mp3/g, ''))
 
   const secondResponse = await prompt({
@@ -25,5 +25,5 @@ const fs = require('fs');
     choices: files
   })
 
-  player.play({ path: `${firstResponse.purpose}/${secondResponse.music}.mp3` })
+  player.play({ path: `${__dirname}/${firstResponse.purpose}/${secondResponse.music}.mp3` })
 })()
