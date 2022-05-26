@@ -10,31 +10,30 @@ npm install music-recommend
 
 ## Usage
 
-Please execute the following command.
+Please set the API Key to an environment variable and execute the following command.
 
 ```sh
+export MUSIC_RECOMMEND_API_KEY=YOUR_API_KEY
 npx music-recommend
 ```
 
-Please select a purpose.
+Please select your purpose.
 
 ```sh
 ? Please select your purpose …
-❯ Chill
-  Driving
+❯ Driving
   Relaxing
-  Motivational
   Working
+  Motivational
 ```
 
-Please select music. The selected music will be played automatically. If you want to stop the music,press`control c`.
+Please select music. The selected music will be played automatically.
 
 ```sh
-✔ Please select your purpose · Chill
+✔ Please select your purpose · Driving
 ? Please select music …
-❯ Michael FK - Empyrean
-  Michael FK - Faith
-  Michael FK - See You Again
-  Sappheiros - Miracle
-  Sappheiros - You
-```
+❯ CAIRN - Close Call (Original Mix) [Music Video]
+  re:plus -  Aism
+  Everlasting Truth
+  re:plus × Yusuke Shima  / Glittering sea
+  Re:Plus - Blue Sky (Feat. Cokiyu)
