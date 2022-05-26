@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#! /usr/bin / env node
 
 'use strict'
 
@@ -7,7 +7,7 @@ const open = require('open')
 const axios = require('axios')
 
 const channelId = 'UCrs9_v3vRYZqXMVAqrIFViA'
-const apiKey = 'AIzaSyDsMaB4ddZrwtQQ23Dmy5-IEv-5ltF_KvE';
+const apiKey = process.env.MUSIC_RECOMMEND_API_KEY;
 
 (async () => {
   const responseOfPlaylist = await axios.get(
