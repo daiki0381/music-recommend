@@ -3,27 +3,43 @@
 'use strict'
 
 const { prompt } = require('enquirer')
-const player = require('node-wav-player')
-const fs = require('fs');
+const open = require('open')
+const axios = require('axios')
+
+const channelId = 'UCrs9_v3vRYZqXMVAqrIFViA'
+const apiKey = 'AIzaSyDsMaB4ddZrwtQQ23Dmy5-IEv-5ltF_KvE';
 
 (async () => {
-  const firstResponse = await prompt({
+  const responseOfPlaylist = await axios.get(
+    `https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=${channelId}&key=${apiKey}`
+  )
+  const jsonOfPlaylist = await responseOfPlaylist.data
+  const titlesOfPlaylist = jsonOfPlaylist.items.map(item => item.snippet.title)
+
+  const firstResponseOfEnquirer = await prompt({
     type: 'select',
     name: 'purpose',
     message: 'Please select your purpose',
-    choices: ['Chill', 'Driving', 'Relaxing', 'Motivational', 'Working']
+    choices: titlesOfPlaylist
   })
 
-  const files = fs
-    .readdirSync(`${__dirname}/${firstResponse.purpose}`)
-    .map((file) => file.replace(/.mp3/g, ''))
+  const [playlistMatchingTitle] = jsonOfPlaylist.items.filter(item => firstResponseOfEnquirer.purpose === item.snippet.title)
+  const playlistId = playlistMatchingTitle.id
 
-  const secondResponse = await prompt({
+  const responseOfPlaylistItems = await axios.get(
+    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&key=${apiKey}`
+  )
+  const jsonOfPlaylistItems = await responseOfPlaylistItems.data
+  const titlesOfPlaylistItems = jsonOfPlaylistItems.items.map(item => item.snippet.title)
+
+  const secondResponseOfEnquirer = await prompt({
     type: 'select',
     name: 'music',
     message: 'Please select music',
-    choices: files
+    choices: titlesOfPlaylistItems
   })
 
-  player.play({ path: `${__dirname}/${firstResponse.purpose}/${secondResponse.music}.mp3` })
+  const [PlaylistItemsMatchingTitle] = jsonOfPlaylistItems.items.filter(item => secondResponseOfEnquirer.music === item.snippet.title)
+  const url = `https://www.youtube.com/watch?v=${PlaylistItemsMatchingTitle.snippet.resourceId.videoId}`
+  open(url)
 })()
