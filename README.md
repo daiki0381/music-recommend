@@ -10,10 +10,16 @@ npm install music-recommend
 
 ## Usage
 
-Please set the API Key to an environment variable and execute the following command.
+Please obtain the YouTube Data API v3 API Key and set the API Key to an environment variable.
 
 ```sh
 export MUSIC_RECOMMEND_API_KEY=YOUR_API_KEY
+```
+
+Please execute the following command.
+
+```sh
+
 npx music-recommend
 ```
 
